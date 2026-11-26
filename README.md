@@ -4,12 +4,23 @@
 
 標準入力から買い物リストを読み込み、重複する商品を取り除いて、商品名をアルファベット順に表示するコマンドです。また、オプションを指定すると商品の個数も表示できます。
 
+## インストール方法
+
+以下のコマンドでリポジトリを取得します。
+
+```bash
+$ git clone -b dev https://github.com/Hata163119/robosys2026.git
+$ cd robosys2026
+```
+
+Python 3がインストールされていれば、追加のライブラリなしで使用できます。
+
 ## 使用方法
 
 ### 通常の使い方
 
 ```bash
-printf "apple\nmilk\napple\nbread\nmilk\n" | ./shoppinglist
+$ printf "apple\nmilk\napple\nbread\nmilk\n" | ./shoppinglist
 ```
 
 実行結果
@@ -25,7 +36,7 @@ milk
 `-c` または `--count` オプションを指定します。
 
 ```bash
-printf "apple\nmilk\napple\nbread\nmilk\napple\n" | ./shoppinglist -c
+$ printf "apple\nmilk\napple\nbread\nmilk\napple\n" | ./shoppinglist -c
 ```
 
 実行結果
@@ -59,7 +70,7 @@ milk 2
 ## テスト方法
 
 ```bash
-bash test.bash
+$ bash test.bash
 ```
 
 ## ライセンス
