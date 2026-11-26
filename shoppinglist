@@ -3,11 +3,21 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import sys
+import argparse
 
 
 def main():
-    items = []
-    seen = set()
+    parser = argparse.ArgumentParser(
+        description="Sort shopping items and remove duplicates."
+    )
+    parser.add_argument(
+        "-c", "--count",
+        action="store_true",
+        help="Show the number of each item."
+    )
+    args = parser.parse_args()
+
+    items = {}
 
     for line in sys.stdin:
         item = line.strip()
@@ -17,12 +27,18 @@ def main():
 
         key = item.casefold()
 
-        if key not in seen:
-            seen.add(key)
-            items.append(item)
+        if key not in items:
+            items[key] = [item, 0]
 
-    for item in sorted(items, key=str.casefold):
-        print(item)
+        items[key][1] += 1
+
+    for key in sorted(items):
+        name, count = items[key]
+
+        if args.count:
+            print(f"{name} {count}")
+        else:
+            print(name)
 
 
 if __name__ == "__main__":

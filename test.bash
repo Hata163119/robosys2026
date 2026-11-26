@@ -24,6 +24,11 @@ out=$(printf "apple\n\nmilk\n\nbread\n" | ./shoppinglist)
 [ "$?" = 0 ] || ng "$LINENO"
 [ "${out}" = "$(printf "apple\nbread\nmilk")" ] || ng "$LINENO"
 
+### COUNT OPTION ###
+out=$(printf "apple\nmilk\napple\nbread\nmilk\napple\n" | ./shoppinglist -c)
+[ "$?" = 0 ] || ng "$LINENO"
+[ "${out}" = "$(printf "apple 3\nbread 1\nmilk 2")" ] || ng "$LINENO"
+
 ### EMPTY INPUT ###
 out=$(printf "" | ./shoppinglist)
 [ "$?" = 0 ] || ng "$LINENO"
