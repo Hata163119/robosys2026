@@ -1,26 +1,50 @@
-# plusコマンド
+# shoppinglistコマンド
 
 ![test](https://github.com/Hata163119/robosys2026/actions/workflows/test.yml/badge.svg)
 
-標準入力から読み込んだ整数を足し合わせ、合計を標準出力に表示するコマンドです。
+標準入力から買い物リストを読み込み、重複する商品を取り除いて、商品名をアルファベット順に表示するコマンドです。また、オプションを指定すると商品の個数も表示できます。
 
 ## 使用方法
 
+### 通常の使い方
+
 ```bash
-seq 5 | ./plus
+printf "apple\nmilk\napple\nbread\nmilk\n" | ./shoppinglist
 ```
 
 実行結果
 
 ```text
-15
+apple
+bread
+milk
 ```
 
-## 入力について
+### 商品の個数を表示する
 
-- 標準入力から整数を1行ずつ読み込みます。
-- 入力された整数の合計を表示します。
-- 不正な入力や入力がない場合はエラー終了します。
+`-c` または `--count` オプションを指定します。
+
+```bash
+printf "apple\nmilk\napple\nbread\nmilk\napple\n" | ./shoppinglist -c
+```
+
+実行結果
+
+```text
+apple 3
+bread 1
+milk 2
+```
+
+## 主な機能
+
+- 標準入力から商品名を1行ずつ読み込む
+- 重複する商品を取り除く
+- 商品名をアルファベット順に並べる
+- 大文字と小文字を区別せずに重複を判定する
+- 空行を無視する
+- `-c` または `--count` で商品の個数を表示する
+- 入力が空の場合は何も表示しない
 
 ## 必要なソフトウェア
 
@@ -40,5 +64,6 @@ bash test.bash
 
 ## ライセンス
 
-- このソフトウェアパッケージは、3条項BSDライセンスの下で再頒布および使用が許可されます。
-- © 2026 Kouta Hayakawa
+このソフトウェアはBSD 3-Clause Licenseの下で公開しています。
+
+Copyright (c) 2026 Kouta Hayakawa
