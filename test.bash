@@ -29,13 +29,6 @@ out=$(printf "apple\nmilk\napple\nbread\nmilk\napple\n" | ./shoppinglist -c)
 [ "$?" = 0 ] || ng "$LINENO"
 [ "${out}" = "$(printf "apple 3\nbread 1\nmilk 2")" ] || ng "$LINENO"
 
-### EMPTY INPUT ###
-out=$(printf "" | ./shoppinglist)
-[ "$?" = 0 ] || ng "$LINENO"
-[ "${out}" = "" ] || ng "$LINENO"
-
-[ "${res}" = 0 ] && echo OK
-exit "$res"
 ### LONG COUNT OPTION ###
 out=$(printf "apple\nmilk\napple\nbread\nmilk\napple\n" | ./shoppinglist --count)
 [ "$?" = 0 ] || ng "$LINENO"
@@ -45,3 +38,11 @@ out=$(printf "apple\nmilk\napple\nbread\nmilk\napple\n" | ./shoppinglist --count
 out=$(printf "Apple\napple\n\nMILK\nmilk\nbread\n" | ./shoppinglist -c)
 [ "$?" = 0 ] || ng "$LINENO"
 [ "${out}" = "$(printf "Apple 2\nbread 1\nMILK 2")" ] || ng "$LINENO"
+
+### EMPTY INPUT ###
+out=$(printf "" | ./shoppinglist)
+[ "$?" = 0 ] || ng "$LINENO"
+[ "${out}" = "" ] || ng "$LINENO"
+
+[ "${res}" = 0 ] && echo OK
+exit "$res"
