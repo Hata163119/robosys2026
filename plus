@@ -10,12 +10,9 @@ count = 0
 for line in sys.stdin:
     try:
         x += int(line)
+        count += 1
     except ValueError:
-        try:
-            x += float(line)
-        except ValueError:
-            sys.exit(1)
-    count += 1
+        sys.exit(1)
 
 if count == 0:
     sys.exit(1)
