@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Kouta Hayakawa
+# SPDX-License-Identifier: BSD-3-Clause
+
+import sys
+
+
+def main():
+    items = []
+    seen = set()
+
+    for line in sys.stdin:
+        item = line.strip()
+
+        if not item:
+            continue
+
+        key = item.casefold()
+
+        if key not in seen:
+            seen.add(key)
+            items.append(item)
+
+    for item in sorted(items, key=str.casefold):
+        print(item)
+
+
+if __name__ == "__main__":
+    main()
